@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no", initial-scale="1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width"/>
+    <link rel="stylesheet" type="text/css" href="../public/stylesheets/nav.css">
+    <link rel="stylesheet" type="text/css" href="../public/stylesheets/emailsignin.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <script type="text/javascript">
+        function checkEmail(){
+            var email=$("#input_email").val();
+            $.ajax({
+                type:'POST',
+                url: "/member/checkEmail",
+                dataType:"json",
+                data: {"input_email": email},
+                success:function (result) {
+                    console.log("11111"+result);
+                    $("#ajax").remove();
+                    console.log("222"+ result);
+                    if(result)  {
+                        $('#checkMessage').html('사용할 수 없는 이메일입니다.');
+                        $("#submit").prop('disabled',true);
+                    }
+                    else{
+                        $('#checkMessage').html('사용할 수 있는 이메일입니다.');
+                        $("#submit").prop('disabled',false); 
+                    }
+                },
+                error:function (result) {
+                    $('#checkMessage').html('사용할 수 있는 이메일입니다.');
+                    $("#submit").prop('disabled',false);
+                    return false;
+                }
+            });
+            $.ajax({
+                type : 'POST',
+                url : '/validEmail',
+                dataType: "json",
+                data : {"input_email": email},
+                success:function(result){
+                    $("#ajax").remove();
+                    console.log("333"+ result);
+                    if(result)  {
+                        $('#checkMessage').html('사용할 수 있는 이메일입니다.');
+                        $("#submit").prop('disabled',false);
+                    }
+                    else{
+                        $('#checkMessage').html('사용할 수 없는 이메일입니다.');
+                        $("#submit").prop('disabled',true); 
+                    }  
+                },
+                error:function(result){
+                    $('#checkMessage').html('사용할 수 없는 이메일입니다.');
+                    $("#submit").prop('disabled',true);
+                    return false; 
+                }
+
+            });
+
+        }
+    </script>
+</head>
+<body>
+<nav>
+    <div class="nav-wrapper">
+        <a href="#" class="brand-logo center">이메일가입</a>
+        <ul id="nav-mobile" class="left">
+            <li><a id="home_btn" class="material-icons" href="signin.html">arrow_back</a></li>
+        </ul>
+
+    </div>
+</nav>
+
+
+<div id="content_wrap">
+    <div class="row">
+        <form class="col s12" name="form1" method="post" action="/signup">
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">email</i>
+                    <input id="input_email" name="input_email" type="email" class="validate" onchange="checkEmail()"/>
+                    <label>이메일 입력</label>
+                    <span id="checkMessage"></span>
+                </div>
+
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">account_circle</i>
+                    <input id="input_nickname" name="input_nickname" type="text" class="validate"/>
+                    <label>닉네임 입력</label>
+                </div>
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">vpn_key</i>
+                    <input id="input_password" name="input_password" type="password" class="validate"/>
+                    <label>비밀번호 입력 (8자~15 내)</label>
+                </div>
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">check</i>
+                    <input id="input_passwordcheck" name="input_passwordcheck" type="password" class="validate"/>
+                    <label>비밀번호 재입력</label>
+                </div>
+                <button type="submit" id="submit" class="waves-effect waves-light btn">가입완료</input></button>
+
+            </div>
+         </form>
+    </div>
+
+
+   
+    <script type = "text/javascript">
+
+        $(".button-collapse").sideNav();
+     </script>
+
+</div>
+</body>
+</html>

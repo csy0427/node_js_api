@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="chatBoard">
+
+    <select id="listRoom" resultType="com.spring.ChatBoard.dto.ChatRoomVO">
+        SELECT
+            boardnumber AS boardnumber,
+            room_name AS roomName,
+            secret AS secret,
+            max_member AS maxMember,
+            room_password AS roomPassword,
+            owner AS owner
+        FROM chat_room ORDER BY boardnumber
+    </select>
+
+    <insert id="insertRoom" parameterType="com.spring.ChatBoard.dto.ChatRoomVO">
+        INSERT INTO chat_room
+        VALUES (nextval('seq_roomnumber'), #{roomName}, #{secret},#{maxMember},#{roomPassword},#{owner})
+    </insert>
+
+    <insert id="insertRoomInfo" parameterType="com.spring.ChatBoard.dto.ChatRoomVO">
+        INSERT INTO chat_room
+        VALUES ('seq_roomnumber', #{roomName}, #{secret})
+    </insert>
+
+    <delete id="deleteRoom" parameterType="String">
+        DELETE FROM chat_room WHERE boardnumber=#{boardnumber}
+    </delete>
+
+    <delete id="deleteRoomInfo" parameterType="String">
+        DELETE FROM cur_room_info WHERE boardnumber=#{boardnumber}
+    </delete>
+
+    <select id="getRoom" parameterType="String" resultType="com.spring.ChatBoard.dto.ChatRoomVO">
+        SELECT *
+        FROM chat_room c , cur_user_info u
+        WHERE c.boardnumber=u.boardnumber AND c.boardnumber = #{boardnumber}
+    </select>
+
+    <update id="updateRoom" parameterType="com.spring.ChatBoard.dto.ChatRoomVO">
+        UPDATE chat_room
+        SET room_name= #{roomName} AND max_member=#{roomName} AND secret=#{secret} AND room_password=#{roomPassword}
+        where boardnumber=#{boardnumber}
+    </update>
+
+    <update id="updateRoomInfo" parameterType="com.spring.ChatBoard.dto.ChatRoomVO">
+        UPDATE cur_room_info
+        SET room_name= #{roomName} AND secret=#{secret}
+        where boardnumber=#{boardnumber}
+    </update>
+
+    <select id="countRoom" resultType="int">
+        SELECT COALESCE(COUNT(boardnumber), 0) count
+        FROM
+        chat_room
+    </select>
+
+
+</mapper>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no" , initial-scale="1.0">
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/nav.css">
+    <link rel="stylesheet" type="text/css" href="css/login.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+</head>
+<body>
+<nav>
+    <div class="nav-wrapper">
+        <a href="#" class="brand-logo center">Test</a>
+
+    </div>
+</nav>
+        <div id="main_wrap">
+            <div class="panel panel-default">
+            <div class="panel-body">
+                <a id="Kakao-login-btn" href="/member/auth/kakao">
+                    <img src="/public/kakaologin.jpg" width="300"/>
+                </a>
+
+            </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <a id="Naver-login-btn" href="javascript:loginWithNaver()">
+                        <img src="/public/naverlogin.png"  width="300"/>
+                    </a>
+
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <a id="Facebook-login-btn" href="/member/auth/facebook">
+                        <img src="/public/facebooklogin.png"  width="300"/>
+                    </a>
+
+                </div>
+            </div>
+            <a id="signin" class="waves-effect waves-light btn main_btn"><i class="material-icons left email_icon">email</i>이메일로 로그인</a>
+
+           <!-- <a id="signin" class="waves-effect waves-light btn main_btn"><i class="material-icons left email_icon">email</i>이메일로 회원가입</a>-->
+            <div class="logincheck">
+                아직 회원이 아니세요? <a href="/member/signup">회원가입</a></div>
+            </div>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                //회원가입 버튼 클릭
+                $('#signin').on('click', function () {
+                    location.href="/member/otherlogin"
+                });
+                
+
+                //내 정보 버튼 클릭
+                $('#myinfo').on('click', function () {
+                });
+            });
+
+
+        </script>
+
+</body>
+</html>
+

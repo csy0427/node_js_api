@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no" , initial-scale="1.0">
+    <link rel="stylesheet" type="text/css" href="../public/stylesheets/reset.css">
+    <link rel="stylesheet" type="text/css" href="../public/stylesheets/nav.css">
+    <link rel="stylesheet" type="text/css" href="../public/stylesheets/signin.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+</head>
+<body>
+<nav>
+    <div class="nav-wrapper">
+        <a href="#" class="brand-logo center">밥꾹이</a>
+
+    </div>
+</nav>
+
+<div id="main_wrap">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <a id="Kakao-login-btn" href="/member/auth/kakao">
+            <a id="Kakao-login-btn" href="javascript:loginWithKakao()">
+                <img src="../public/kakaosign.jpg" width="300"/>
+            </a>
+
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <a id="Naver-login-btn" href="javascript:loginWithNaver()">
+                <img src="../public/naversign.png"  width="300"/>
+            </a>
+
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-body">
+
+            <a id="Facebook-login-btn" href="/member/auth/facebook">
+            <a id="Facebook-login-btn" href="javascript:loginWithNaver()">
+
+                <img src="../public/facebooksign.png"  width="300"/>
+            </a>
+
+        </div>
+    </div>
+
+    <a id="signin" class="waves-effect waves-light btn main_btn"><i class="material-icons left email_icon">email</i>이메일로 가입하기</a>
+
+
+
+    <div class="logincheck">
+        이미 회원이세요? <a href="/member/login">로그인</a>
+        이미 회원이세요? <a href="login.html">로그인</a>
+
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        //회원가입 버튼 클릭
+        $('#signin').on('click', function () {
+            location.href="/member/signup/email"
+
+            //location.href="emailsignin.html"
+
+        });
+
+        //내 정보 버튼 클릭
+        $('#myinfo').on('click', function () {
+        });
+    });
+
+
+</script>
+
+<script type='text/javascript'>
+    //<![CDATA[
+    // 사용할 앱의 JavaScript 키를 설정해 주세요.
+    Kakao.init('52e9aec3331d09d9d4c898f8b3070b5b');
+    // 카카오 로그인 버튼을 생성합니다.
+    Kakao.Auth.createLoginButton({
+        container: '#kakao-login-btn',
+        success: function(authObj) {
+            alert(JSON.stringify(authObj));
+        },
+        fail: function(err) {
+            alert(JSON.stringify(err));
+        }
+    });
+    //]]>
+</script>
+</body>
+</html>

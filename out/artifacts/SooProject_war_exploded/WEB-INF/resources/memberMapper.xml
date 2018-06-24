@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 다른 mapper와 중복되지 않도록 네임스페이스 기재 -->
+<mapper namespace="board_member">
+
+    <select id="loginCheck" resultType="String">
+        SELECT username AS username FROM board_member
+        WHERE userid = #{userId} AND userpw= #{userpw}
+    </select>
+
+    <select id="list" resultType="com.com.spring.Member.dto.MemberVO">
+        SELECT *
+        FROM board_member
+    </select>
+
+    <select id="add" parameterType="com.com.spring.Member.dto.MemberVO">
+        INSERT INTO board_member
+        (userid, userpw, username, useremail)
+        VALUES (#{userid}, #{userpw}, #{username}, #{useremail})
+    </select>
+
+    <delete id="delete" parameterType="String">
+        DELETE FROM board_member WHERE userid= #{userid}
+    </delete>
+
+    <select id="get" parameterType="String" resultType="com.com.spring.Member.dto.MemberVO">
+        SELECT
+        userid, userpw, username, useremail
+        FROM board_member
+        WHERE userid = #{userid}
+    </select>
+
+    <update id="update" parameterType="com.com.spring.Member.dto.MemberVO">
+        UPDATE board_member
+        SET userpw  = #{userpw}, username = #{username}, useremail = #{useremail}
+        where userid = #{userid}
+    </update>
+
+</mapper>
