@@ -10,7 +10,7 @@ var KakaoStrategy = require('passport-kakao').Strategy;
 var FacebookStrategy= require('passport-facebook').Strategy;
 var bkfd2Password = require("pbkdf2-password");
 var hasher = bkfd2Password();
-var url='mongodb://root:123456@54.249.81.28/';
+var url='mongodb://root:123456@/';
 module.exports = function(passport) {
     
     passport.serializeUser(function(user, done) {

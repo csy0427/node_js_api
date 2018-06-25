@@ -70,7 +70,7 @@ router.route('/sendEmail').post(function(req,res){
            var transporter=nodemailer.createTransport({
             service : 'naver',
             auth:{
-                user: 'tuchsoo2@naver.com',
+                user: '111@naver.com',
                 pass: '**********'
             }
             });

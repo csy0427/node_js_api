@@ -4,7 +4,7 @@ const crypto = require('crypto');
 var MongoClient = require('mongodb').MongoClient;
 var bkfd2Password = require("pbkdf2-password");
 var hasher = bkfd2Password();
-var url='mongodb://root:123456@54.249.81.28/admin';
+var url='mongodb://@/admin';
 
 mongoose.connect(url,function(err,db){
     if(err) console.log("failed to connect to db in user.js");
