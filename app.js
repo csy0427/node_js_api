@@ -69,7 +69,7 @@ var options = {
   };
   //mongoose.connect(secrets.db, options);
 
-var url='mongodb://root:123456@54.249.81.28/admin';
+var url='mongodb://@/admin';
 mongoose.connect(url,options);
 
 var db = mongoose.connection;
